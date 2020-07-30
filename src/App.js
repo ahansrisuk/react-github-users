@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "./components/Form";
+import CardList from "./components/CardList";
 import "./App.css";
 
 function App() {
+  const [cards, setCards] = useState([]);
+
+  const addNewCard = (card) => {
+    setCards([...cards, card]);
+  };
+
   return (
     <div className="App">
       <h1 className="pt-10  text-center mt-6 text-3xl leading-9 font-extrabold text-gray-900">
         Search for a GitHub User
       </h1>
-      <Form />
+      <Form onSubmit={addNewCard} />
+      <CardList cards={cards} />
     </div>
   );
 }
